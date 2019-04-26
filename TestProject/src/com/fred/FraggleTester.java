@@ -7,11 +7,11 @@ public class FraggleTester
   {
     try
     {
-      System.out.print("FraggleTester() entered");
+      System.out.print("FraggleTester()");
     }
     catch (Exception e)
     {
-      e.printStackTrace(System.out);
+      e.printStackTrace();
     }
   }
 }
