@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="debug" monitorInterval="30" strict="true">
+
+  <Properties>
+    <Property name="ADPW_PATH">log</Property>
+    <Property name="LOG_PATTERN">%d{yyyy/MMM/dd HH:mm:ss:SSS} %-5p - %m%n</Property>
+    <Property name="ROLL_SIZE">250 MB</Property>
+    <Property name="MAX_FILE_DAILY">20</Property>
+    <Property name="MAX_FILE_AGE">90d</Property>
+  </Properties>
+
+
+  <Appenders>
+    <File name="ROOT" fileName="${ADPW_PATH}/root.log">
+      <PatternLayout>
+        <pattern>%d %p [%t] %c %m%n</pattern>
+      </PatternLayout>
+    </File>
+
+    <File name="FRAGGLE" fileName="${ADPW_PATH}/fraggle.log">
+      <PatternLayout pattern="${LOG_PATTERN}" />
+    </File>
+
+    <RollingFile name="FRED" fileName="${ADPW_PATH}/fred-${sys:server}.log" filePattern="${ADPW_PATH}/fred-${sys:server}.log.%d{yyyy-MM-dd}-%i">
+      <PatternLayout pattern="${LOG_PATTERN}" />
+      <Policies>
+        <TimeBasedTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="${ROLL_SIZE}" />
+      </Policies>
+      <DefaultRolloverStrategy max="${MAX_FILE_DAILY}">
+        <Delete basePath="${ADPW_PATH}">
+          <IfLastModified age="${MAX_FILE_AGE}" />
+        </Delete>
+      </DefaultRolloverStrategy>
+    </RollingFile>
+    
+  <!--
+  <Cassandra name="CASSANDRA" clusterName="Test Cluster" keyspace="adpw" table="logs" bufferSize="10" batched="true">
+      <SocketAddress host="localhost" port="9042"/>
+      <ColumnMapping name="id" pattern="%uuid{TIME}" type="java.util.UUID"/>
+      <ColumnMapping name="timeid" literal="now()"/>
+      <ColumnMapping name="message" pattern="%message"/>
+      <ColumnMapping name="level" pattern="%level"/>
+      <ColumnMapping name="marker" pattern="%marker"/>
+      <ColumnMapping name="logger" pattern="%logger"/>
+      <ColumnMapping name="timestamp" type="java.util.Date"/>
+      <ColumnMapping name="mdc" type="org.apache.logging.log4j.spi.ThreadContextMap"/>
+      <ColumnMapping name="ndc" type="org.apache.logging.log4j.spi.ThreadContextStack"/>
+    </Cassandra>
+  -->
+
+  <!-- 
+  <JDBC name="DB" tableName="LOG4J_APP_LOGS">
+      <DataSource jndiName="jdbc/adpworld2" />
+      <Column name="EVENT_DATE" isEventTimestamp="true" />
+      <Column name="LOG_LEVEL" pattern="%level" />
+      <Column name="LOGGER" pattern="%logger" />
+      <Column name="MESSAGE" pattern="%message" />
+      <Column name="ERR" pattern="%ex{full}" />
+    </JDBC>
+   -->
+    
+  </Appenders>
+
+  <Loggers>
+    <Logger name="com.fred.LoggingTest" level="debug" additivity="false"><AppenderRef ref="FRED" /></Logger>
+
+    <Root level="error" additivity="false">
+      <AppenderRef ref="ROOT" />
+    </Root>
+  </Loggers>
+
+</Configuration>
