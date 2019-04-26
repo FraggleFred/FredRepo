@@ -7,7 +7,7 @@ public class FraggleTester
   {
     try
     {
-      System.out.print("FraggleTester()");
+      System.out.print("FraggleTester() again");
     }
     catch (Exception e)
     {
