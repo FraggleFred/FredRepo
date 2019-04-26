@@ -27,7 +27,7 @@ public class LoggingTest
    */
   public void logit()
   {
-    for (int i = 0; i < 3000; i++)
+    for (int i = 0; i < 300; i++)
     {
       if (logM.isInfoEnabled())
       {
