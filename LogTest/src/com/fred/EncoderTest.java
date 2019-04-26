@@ -25,7 +25,7 @@ public class EncoderTest
   {
     try
     {
-      String xtUrl = "https://adpworld.staging.ehc.adp.com/xtimewf/gwmenu-war?LOGIN=VVNFUklEPWRlODQ3MzY0JkRPTUFJTj1kZS5iZTEmVElNRVNUQU1QPTE4MDMyMDE5MTA1MTU4JlZB&#10;TFVFPTc4MzExNTA2Q0I1RDZENTI3MTY0QkExMDQxQzEwMkND";
+      String xtUrl = "https://localhost/xtimewf/gwmenu-war?LOGIN=VVNFUklEPWRlODQ3MzY0JkRPTUFJTj1kZS5iZTEmVElNRVNUQU1QPTE4MDMyMDE5MTA1MTU4JlZB&#10;TFVFPTc4MzExNTA2Q0I1RDZENTI3MTY0QkExMDQxQzEwMkND";
       String instId = "vmosbingsa:/appl/prod/ADVT14:ADVT14";
       String iHCMUrl = "https://www.adpworld.de/whrm";
       String jsUrl = "<script>alert(1);</script>";
