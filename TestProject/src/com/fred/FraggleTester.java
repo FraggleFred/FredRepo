@@ -11,7 +11,7 @@ public class FraggleTester
     }
     catch (Exception e)
     {
-      e.printStackTrace(System.err);
+      e.printStackTrace(System.out);
     }
   }
 }
